@@ -22,8 +22,8 @@ const AddPost = () => {
 				}
 				setIsDisabled(false);
 			},
-			onSuccess: (data) => {
-				toast.success('Post has been made', { id: toastPostID });
+			onSuccess: () => {
+				toast.success('Post has been published', { id: toastPostID });
 				setText('');
 				setIsDisabled(false);
 			},
@@ -32,7 +32,7 @@ const AddPost = () => {
 
 	const submitPost = async (e: React.FormEvent) => {
 		e.preventDefault();
-		toastPostID = toast.loading('Creating your post');
+		toastPostID = toast.loading('Publishing your post...');
 		setIsDisabled(true);
 		mutate(text);
 	};

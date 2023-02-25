@@ -26,14 +26,14 @@ export default async function handler(
 	}
 
 	const user = await prisma.user.findUnique({
-		where: { email: session?.user?.email }
+		where: { email: session?.user?.email || undefined }
 	})
 
 	try {
 		const result = await prisma.post.create({
 			data: {
 				title,
-				authorId: user.id
+				authorId: user!.id
 			}
 		})
 		res.status(200).json(result)
