@@ -1,38 +1,131 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# next-prisma-postit
 
-First, run the development server:
+Small project with newest version of Next.js and Prisma DB (connected to PostgreSQL).
+This was a project with a tutorial cause I haven't got enough skills to work with Prisma and Tanstack query.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
+## Acknowledgements
+
+ - [Course](https://www.youtube.com/watch?v=4xduSsxa5Os)
+
+
+## API Reference
+
+#### Authentication
+
+```http
+  GET /api/auth/[...nextauth]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Routes covered by [next-auth](https://next-auth.js.org/)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### Get all posts
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+```http
+  GET /api/posts/get-posts
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+#### Get own posts *(auth)*
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```http
+  GET /api/posts/get-my-posts
+```
 
-## Learn More
+#### Delete own post *(auth)*
 
-To learn more about Next.js, take a look at the following resources:
+```http
+  DELETE /api/posts/delete-post
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Add post *(auth)*
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+```http
+  POST /api/posts/add-post
+```
 
-## Deploy on Vercel
+#### Add comment *(auth)*
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```http
+  POST /api/posts/add-comment
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+#### Get post by id 
+
+```http
+  POST /api/posts/[id]
+```
+
+| Parameter | Type     | Description                       |
+| :-------- | :------- | :-------------------------------- |
+| `id`      | `string` | **Required**. Id of post to fetch |
+
+
+## Demo
+
+**[Live preview](https://postit.pacio.dev)**
+## Deployment
+
+```bash
+yarn build
+```
+
+## Installation
+
+Firstly you need to setup environmental variables in `.env` and `.env.local` files.
+You have template in `.env.example` and `.env.local.example`
+
+and then
+
+```bash
+yarn
+```
+
+## Lessons Learned
+
+I learned how to cooperate with Prisma db connected with PostgreSQL.
+## Screenshots
+
+![Image of website](https://i.imgur.com/9zPCH9x.png)
+
+![Image of /dashboard](https://i.imgur.com/pHTNF0k.png)
+
+![Image of /post/$id](https://i.imgur.com/lN4DoyL.png)
+## Run Locally
+
+Clone the project
+
+```bash
+git clone https://github.com/paciodev/next-prisma-postit
+```
+
+Go to the project directory
+
+```bash
+cd nxet-prisma-postit
+```
+
+Install dependencies
+
+```bash
+yarn
+```
+
+Start the server
+
+```bash
+yarn dev
+```
+
+
+## Support
+
+For support, email postit@pacio.dev.
+
+
+## Tech Stack
+
+**Client:** React, TailwindCSS, react-hot-toast, react-timeago, axios
+
+**Server:** Next.js, Prisma, PostgreSQL, next-auth, @tanstack/react-query
+
