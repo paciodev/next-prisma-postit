@@ -1,5 +1,4 @@
 export type Post = {
-	type: string;
 	id: string;
 	createdAt: string
 	title: string;
@@ -7,13 +6,7 @@ export type Post = {
 		name: string
 		image: string
 	}
-	comments?: {
-		createdAt: string
-		id: string
-		postId: string
-		authorId: string
-		message: string
-	}[]
+	comments?: Comment[]
 }
 
 export type Comment = {
@@ -22,4 +15,21 @@ export type Comment = {
 	postId: string;
 	authorId: string;
 	message: string;
+	author?: {
+		name: string
+		image: string
+	}
+}
+
+export type MyPosts = {
+	email: string
+	id: string
+	image: string
+	name: string
+	Post: {
+		createdAt: string
+		id: string
+		title: string
+		comments?: Comment[]
+	}[]
 }

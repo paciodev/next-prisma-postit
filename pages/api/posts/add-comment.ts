@@ -14,7 +14,7 @@ export default async function handler(
 		return res.status(401).json({ message: 'Please sign in to make a post.' })
 	}
 
-	const title: string = req.body.title
+	const { title, postId }: { title: string, postId: string } = req.body.data
 
 	if (!title) {
 		return res.status(400).json({ message: 'Please provide a text in body.' })
@@ -29,10 +29,11 @@ export default async function handler(
 	})
 
 	try {
-		const result = await prisma.post.create({
+		const result = await prisma.comment.create({
 			data: {
-				title,
-				authorId: user!.id
+				message: title,
+				authorId: user!.id,
+				postId
 			}
 		})
 		res.status(200).json(result)

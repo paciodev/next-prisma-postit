@@ -1,6 +1,6 @@
 'use client';
 
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios, { AxiosError } from 'axios';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 const AddPost = () => {
 	const [text, setText] = useState<string>('');
 	const [isDisabled, setIsDisabled] = useState<boolean>(false);
+	const queryClient = useQueryClient();
 	let toastPostID: string;
 
 	const { mutate } = useMutation(
@@ -24,6 +25,7 @@ const AddPost = () => {
 			},
 			onSuccess: () => {
 				toast.success('Post has been published', { id: toastPostID });
+				queryClient.invalidateQueries(['posts']);
 				setText('');
 				setIsDisabled(false);
 			},

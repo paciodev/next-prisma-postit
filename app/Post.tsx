@@ -32,7 +32,7 @@ const Post = ({ id, avatar, name, postTitle, comments }: Props) => {
 				{/* TODO: CHANGE TO SLUG */}
 				<Link href={`/post/${id}`}>
 					<p className='text-sm font-bold text-gray-700'>
-						{comments?.length} Comments
+						{comments?.length} Comment{comments?.length !== 1 && 's'}
 					</p>
 				</Link>
 			</div>

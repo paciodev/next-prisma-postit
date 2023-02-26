@@ -12,17 +12,16 @@ const posts = async () => {
 };
 
 export default function Home() {
-	const { data, error, isLoading } = useQuery({
+	const { data, error } = useQuery({
 		queryFn: posts,
 		queryKey: ['posts'],
 	});
 
 	// TODO: Change it
 	if (error) {
-		console.log(error);
+		console.error(error);
 	}
 
-	console.log(data);
 	return (
 		<main className='text-lg py-5'>
 			<AddPost />
