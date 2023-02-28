@@ -102,7 +102,7 @@ git clone https://github.com/paciodev/next-prisma-postit
 Go to the project directory
 
 ```bash
-cd nxet-prisma-postit
+cd next-prisma-postit
 ```
 
 Install dependencies
