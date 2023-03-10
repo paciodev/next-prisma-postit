@@ -14,13 +14,25 @@ export default async function handler(
 					id: req.query.id
 				},
 				include: {
-					author: true,
+					author: {
+						select: {
+							id: true,
+							image: true,
+							name: true
+						}
+					},
 					comments: {
 						orderBy: {
 							createdAt: 'desc'
 						},
 						include: {
-							author: true
+							author: {
+								select: {
+									id: true,
+									image: true,
+									name: true
+								}
+							},
 						}
 					}
 				}

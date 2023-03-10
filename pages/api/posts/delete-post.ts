@@ -14,13 +14,29 @@ export default async function handler(
 		return res.status(401).json({ message: 'Please sign in to delete your post.' })
 	}
 
+	console.log(session.user?.email)
+
 	try {
 		const postId = req.body
+		const postToDelete = await prisma.post.findUnique({
+			where: {
+				id: postId
+			},
+			include: {
+				author: true
+			}
+		})
+
+		if (postToDelete?.author.email !== session.user?.email) {
+			return res.status(401).json({ message: "You cannot delete someone else's post." })
+		}
+
 		const result = await prisma.post.delete({
 			where: {
 				id: postId
 			}
 		})
+
 		res.status(200).json(result)
 	} catch (err) {
 		res.status(500).json({ error: err })

@@ -13,9 +13,15 @@ export default async function handler(
 				createdAt: 'desc'
 			},
 			include: {
-				author: true,
+				author: {
+					select: {
+						id: true,
+						image: true,
+						name: true
+					}
+				},
 				comments: true
-			}
+			},
 		})
 		res.status(200).json(data)
 	} catch (err) {
